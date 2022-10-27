@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .connectWalletBtn {
+        @apply bg-[#080a0b] text-white font-bold p-4
+        rounded cursor-pointer
+    }
+
+}
