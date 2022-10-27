@@ -6,6 +6,12 @@ import {
 } from "@thirdweb-dev/react";
 import { ListingType } from '@thirdweb-dev/sdk';
 import {ClockIcon, BanknotesIcon } from '@heroicons/react/24/outline';
+import Head from 'next/head';
+import favicon from "public/nk_icon.png"
+import Link from 'next/link';
+import Image from 'next/image'
+
+
 
 const Home = () => {
   const { contract } = useContract(
@@ -19,6 +25,10 @@ const Home = () => {
 
   return (
     <div>
+              <Head>
+          <title>NAMKA Marketplace</title>
+          <link rel="icon" href="/nk_icon.png" />
+        </Head>
       <Header />
 
       <main className='max-w-6xl mx-auto py-2 px-6'>
