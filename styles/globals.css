@@ -8,4 +8,13 @@
         rounded cursor-pointer
     }
 
+    .header_link {
+        @apply hidden md:inline-flex cursor-pointer
+    }
+
+    .link {
+        @apply text-gray-600 hover:text-blue-500 hover:underline cursor-pointer 
+
+    }
+
 }
