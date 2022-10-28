@@ -96,8 +96,7 @@ function addItem({}: Props) {
                 Add/Mint item</button>
         </form>
         </div>
-
-                </main>
+    </main>
     </div>
   )
 }

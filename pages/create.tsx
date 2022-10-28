@@ -57,6 +57,7 @@ function Create({}: Props) {
                     startTimestamp: new Date()
                 }, {
                     onSuccess(data, variables, context) {
+                        console.log("Success: ",data, variables, context)
                         router.push("/");
                     },
                     onError(error, variables, context) {
@@ -77,6 +78,7 @@ function Create({}: Props) {
                     reservePricePerToken: 0,
                 }, {
                     onSuccess(data, variables, context) {
+                        console.log("Success: ",data, variables, context)
                         router.push("/");
                     },
                     onError(error, variables, context) {
