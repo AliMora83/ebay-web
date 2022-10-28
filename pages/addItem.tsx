@@ -3,6 +3,9 @@ import React, { FormEvent, useState } from 'react'
 import Header from '../components/Header'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+import nk_logo from 'public/nklogo1.png'
+
 
 
 
@@ -19,7 +22,7 @@ function addItem({}: Props) {
     const [preview, setPreview] = useState<string>();
     const [image, setImage] = useState<File>();
 
-    const mintNFT = async (e: FormEvent<HTMLFormElement>) => {
+    const mintNft = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!contract || !address) return;
         if (!image){
@@ -52,6 +55,10 @@ function addItem({}: Props) {
 
   return (
     <div>
+        <Head>
+          <title>NAMKA Marketplace</title>
+          <link rel="icon" href="/nk_icon.png" />
+        </Head>
         <Header/>
 
         <main className='max-w-6xl mx-auto p-10 border'>
@@ -60,15 +67,15 @@ function addItem({}: Props) {
             <p className='pb-5'>By adding an item to the marketplace, you're essentially Minting an NFT of the item into your wallet which we can then list for sale!</p>
         
         <div className='flex flex-col justify-center items-center md:flex-row md:space-x-5 pt-5'>
-            <img 
-            src={preview || "https://imgur.com/qR3gy41"}
-            alt='image'
+            <Image 
+            src={preview || nk_logo}
+            alt='your item image here'
             width={100}
             height={100}
-            className='border h-80 w-80 object-contain rounded-lg opacity-25 p-10' />
+            className='border h-80 w-80 object-contain rounded-lg p-10' />
         
 
-        <form onSubmit={mintNFT} className='flex flex-col flex-1 p-2 space-y-2'>
+        <form onSubmit={mintNft} className='flex flex-col flex-1 p-2 space-y-2'>
             <label className="font-light">Item name</label>
             <input placeholder='Name of item...' className='formField' type="text" name='name' id='name' />
 
