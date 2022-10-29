@@ -5,6 +5,7 @@ import { MediaRenderer, useAddress, useContract, useCreateAuctionListing, useCre
 import { NATIVE_TOKEN_ADDRESS, NFT } from '@thirdweb-dev/sdk'
 import network from '../utils/network'
 import { useRouter } from 'next/router'
+import Footer from '../components/Footer'
 
 
 type Props = {}
@@ -30,10 +31,11 @@ function Create({}: Props) {
         const [, switchNetwork] = useNetwork();
 
         const { mutate: createDirectListing, isLoading, error} = useCreateDirectListing(contract);
-        const { mutate: createAuctionListing, isLoading: isLoadingAuction, error: errorAuction} = useCreateAuctionListing(contract);
+        const { mutate: createAuctionListing, isLoading: isLoadingDirect, error: errorDirect} = useCreateAuctionListing(contract);
 
         const handleCreateListing = async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
+            console.log("Test")
 
             if (networkMismatch) {
                 switchNetwork && switchNetwork(network);
@@ -78,7 +80,7 @@ function Create({}: Props) {
                     reservePricePerToken: 0,
                 }, {
                     onSuccess(data, variables, context) {
-                        console.log("Success: ",data, variables, context)
+                        console.log("Success: ", data, variables, context)
                         router.push("/");
                     },
                     onError(error, variables, context) {
@@ -100,8 +102,10 @@ function Create({}: Props) {
             <h1 className='text-4xl font-bold'>List an item</h1>
             <h2 className='text-xl font-semibold pt-5'>Select an item to sell</h2>
             <hr className='mb-5' />
-            <p className='text-sm text-gray-500'>Below you will find the NFT's you own in your wallet</p>
+            <p className='text-sm text-gray-500'>Below you will find the NFT's connected to your wallet</p>
+            <p className='text-sm text-gray-500'>Select one for more options</p>
         
+
             <div className='flex overflow-x-scroll space-x-2 p-4'>
                 {ownedNfts?.data?.map((nft) => (
                     <div key={nft.metadata.image}
@@ -116,9 +120,9 @@ function Create({}: Props) {
                     <p className='text-sm truncate'>{nft.metadata.description}</p> 
                 </div>
                 ))}
-               
+             
             </div>
-
+               
             {selectedNft && (
                 <form onSubmit={handleCreateListing}>
                     <div className='flex flex-col p-10'>
@@ -138,8 +142,10 @@ function Create({}: Props) {
                     </button>
                     </div>
                 </form>
-            )}
+                )}
+               
         </main>
+        <Footer/>
     </div>
   )
 };

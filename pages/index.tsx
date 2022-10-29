@@ -10,6 +10,7 @@ import Head from 'next/head';
 import favicon from "public/nk_icon.png"
 import Link from 'next/link';
 import Image from 'next/image'
+import Footer from '../components/Footer';
 
 
 
@@ -82,6 +83,7 @@ const Home = () => {
           </div>
        )}
       </main>
+      <Footer/>
     </div>
   )
 }

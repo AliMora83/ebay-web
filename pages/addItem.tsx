@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import nk_logo from 'public/nklogo1.png'
+import Footer from '../components/Footer'
 
 
 
@@ -97,6 +98,7 @@ function addItem({}: Props) {
         </form>
         </div>
     </main>
+    <Footer/>
     </div>
   )
 }
