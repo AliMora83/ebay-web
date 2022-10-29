@@ -11,10 +11,12 @@ import favicon from "public/nk_icon.png"
 import Link from 'next/link';
 import Image from 'next/image'
 import Footer from '../components/Footer';
+import { useRouter } from 'next/router';
 
 
 
 const Home = () => {
+  const router = useRouter();
   const { contract } = useContract(
     process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT, "marketplace"
   );
@@ -26,7 +28,7 @@ const Home = () => {
 
   return (
     <div>
-              <Head>
+        <Head>
           <title>NAMKA Marketplace</title>
           <link rel="icon" href="/nk_icon.png" />
         </Head>
@@ -39,8 +41,8 @@ const Home = () => {
         ) : (
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-auto'>
             {listing?.map((listing) => (
-              <div
-              key={listing.id} 
+              <div key={listing.id}
+              onClick={() => router.push(`/listing/${listing.id}`)}
               className='flex flex-col card hover:scale-105 transition-all duration-150 ease-out'>
                 <div className='flex-1 flex flex-col pb-2 items-center'>
                   <MediaRenderer className='h-44' src={listing.asset.image}/>
