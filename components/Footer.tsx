@@ -10,7 +10,7 @@ function Footer({}: Props) {
   return (
     <div>
          <footer className='flex flex-col items-center text-white justify-between pb-5
-         absolute bottom-0 left-0 right-0 space-y-3 card'>
+          fixed bottom-0 left-0 right-0 space-y-3 card'>
       <Image className='rounded-full h-6 w-6'
          src={nk_icon} alt="icon" />
       <p className='text-xs px-10 text-gray-500 text-center'>
