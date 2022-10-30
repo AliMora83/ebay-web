@@ -139,7 +139,7 @@ function ListingPage() {
                     }
                 //Auction listing
                     if (listing?.type === ListingType.Auction){
-                        alert("Making Bid...")
+                        const notification = toast.loading("Making Bid...");
 
                         await makeBid(
                             {
@@ -193,7 +193,7 @@ function ListingPage() {
       <Header/>
 
             <main className='max-w-6xl mx-auto p-2 flex flex-col lg:flex-row space-y-10 space-x-5 pr-10'>
-                <div className='p-10 border mx-auto lg:mx-0 max-w-md lg:max-w-xl'>
+                <div className='p-10 border mx-auto lg:mx-0 max-w-md lg:max-w-md'>
                     <MediaRenderer src={listing.asset.image}/>
                 </div>
 

@@ -85,7 +85,7 @@ const Home = () => {
           </div>
        )}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
