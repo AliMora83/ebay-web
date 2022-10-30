@@ -12,6 +12,8 @@ import Link from 'next/link';
 import Image from 'next/image'
 import Footer from '../components/Footer';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
+
 
 
 
@@ -23,8 +25,6 @@ const Home = () => {
 
   const { data: listing, isLoading: loadingListings } =
   useActiveListings(contract);
-
-  console.log(listing);
 
   return (
     <div>

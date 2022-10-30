@@ -11,6 +11,8 @@ import Countdown from 'react-countdown';
 import Footer from '../../components/Footer';
 import network from '../../utils/network';
 import { ethers } from 'ethers';
+import toast from 'react-hot-toast';
+
 
 
 function ListingPage() {
@@ -71,6 +73,7 @@ function ListingPage() {
         };
 
         const buyNft = async () => {
+            const notification = toast.loading("Buying NFT...");
             if (networkMismatch) {
                 switchNetwork && switchNetwork(network);
                     return;
@@ -83,18 +86,21 @@ function ListingPage() {
                 type: listing.type,
             }, {
                 onSuccess(data, variables, context) {
-                    alert("NFT bought successfully");
+                    toast.success("NFT bought successfully",
+                    {id: notification});
                     console.log("Success: ",data, variables, context);
                     router.replace("/");
                 },
                 onError(error, variables, context) {
-                    alert("ERROR: NFT not bought");
+                    toast.error("ERROR: NFT not bought", 
+                    {id: notification});
                     console.log("Error: ", error, variables, context);
                 },
             })
         }
 
         const createBidOrOffer = async () => {
+            const notification = toast.loading("Creating Bid...");
                 try {
                     if (networkMismatch) {
                         switchNetwork && switchNetwork(network);
@@ -106,12 +112,13 @@ function ListingPage() {
                             listing.buyoutPrice.toString() === 
                             ethers.utils.parseEther(bidAmount).toString()
                         ) {
-                            alert("Buyout price met, buying NFT...");
+                            toast.success("Buyout price met, buying NFT...",
+                            {id: notification});
                             buyNft();
                             return;
                         }
-
-                        alert("Buyout price not met, making offer...");
+                            toast.error("Buyout price not met, making offer...", 
+                            {id: notification});
                         await makeOffer({
                             quantity: 1,
                             listingId,
@@ -119,12 +126,14 @@ function ListingPage() {
                         }, {
                             onSuccess(data, variables, context) {
                                 console.log("Success: ",data, variables, context)
-                                alert("Successfully made Offer")
+                                toast.success("Successfully made Offer",
+                                {id: notification});
                                 setBidAmount("")
                             },
                             onError(error, variables, context) {
                                 console.log("Error: ", error, variables, context)
-                                alert("Error: Offer could not be made")
+                                toast.error("Error: Offer could not be made", 
+                                {id: notification});
                             },
                         })
                     }
@@ -139,12 +148,14 @@ function ListingPage() {
                             },{
                                 onSuccess(data, variables, context) {
                                     console.log("Success: ",data, variables, context)
-                                    alert("Successfully made Bid")
+                                    toast.success("Successfully made Bid",
+                                    {id: notification});
                                     setBidAmount("")
                                 },
                                 onError(error, variables, context) {
                                     console.log("Error: ", error, variables, context)
-                                    alert("Error: Bid could not be made")
+                                    toast.error("Error: Bid could not be made", 
+                                    {id: notification});
                                 },
                                 
                             }
@@ -247,6 +258,7 @@ function ListingPage() {
                                                     }, {
                                                         onSuccess(data, variables, context) {
                                                             alert("Offer Accepted Successfully");
+                                                            toast.success("Successfully made Offer"),
                                                             console.log("Success: ",data, variables, context);
                                                             router.replace("/");
                                                         },
