@@ -8,10 +8,10 @@ import { ThemeProvider } from '@thirdweb-dev/react/dist/declarations/src/evm/com
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider desiredChainId={network}>
-      <ThemeProvider>
+      {/* <ThemeProvider> */}
         <Component {...pageProps} />
         <Toaster position="top-center" reverseOrder={false}/>
-     </ThemeProvider>
+     {/* </ThemeProvider> */}
     </ThirdwebProvider>
   
 )
