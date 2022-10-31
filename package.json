@@ -11,10 +11,13 @@
     "@thirdweb-dev/sdk": "^3.4.2",
     "ethers": "^5.7.2",
     "next": "latest",
+    "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-countdown": "^2.3.3",
     "react-dom": "18.2.0",
-    "react-hot-toast": "^2.4.0"
+    "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.6.0",
+    "tailwind-scrollbar": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "18.11.3",
