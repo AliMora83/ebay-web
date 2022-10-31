@@ -34,7 +34,7 @@ const Home = () => {
         </Head>
       <Header />
 
-      <main className='max-w-6xl mx-auto py-2 px-6'>
+      <main className='max-w-6xl mx-auto py-2 px-6 pb-10'>
         {loadingListings ? (
         <p className='text-center animate-pulse text-gray-300'>
           Loading listings...</p>

@@ -192,7 +192,7 @@ function ListingPage() {
         </Head>
       <Header/>
 
-            <main className='max-w-6xl mx-auto p-2 flex flex-col lg:flex-row space-y-10 space-x-5 pr-10'>
+            <main className='max-w-6xl mx-auto p-2 flex flex-col lg:flex-row space-y-10 space-x-5 pr-10 pb-20'>
                 <div className='p-10 border mx-auto lg:mx-0 max-w-md lg:max-w-md'>
                     <MediaRenderer src={listing.asset.image}/>
                 </div>
