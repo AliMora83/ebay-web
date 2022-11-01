@@ -4,6 +4,8 @@ import React from 'react'
 import { ChevronDownIcon, ShoppingCartIcon, BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import nk_logo from 'public/nklogo1.png'
+import { toast } from 'react-toastify';
+
 
 type Props = {}
 

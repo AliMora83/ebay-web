@@ -6,11 +6,15 @@ import { NATIVE_TOKEN_ADDRESS, NFT } from '@thirdweb-dev/sdk'
 import network from '../utils/network'
 import { useRouter } from 'next/router'
 import Footer from '../components/Footer'
+import { toast } from 'react-toastify';
+
 
 
 type Props = {}
 
 function Create({}: Props) {
+    const notify = () => toast("Well done Ali!");
+
     const address = useAddress();
     const router = useRouter();
     const { contract } = useContract(
@@ -59,10 +63,12 @@ function Create({}: Props) {
                     startTimestamp: new Date()
                 }, {
                     onSuccess(data, variables, context) {
+                        toast.success("Successful");
                         console.log("Success: ",data, variables, context)
                         router.push("/");
                     },
                     onError(error, variables, context) {
+                        toast.error("Error");
                         console.log("Error: ", error, variables, context)
                     },
                 })
@@ -80,10 +86,12 @@ function Create({}: Props) {
                     reservePricePerToken: 0,
                 }, {
                     onSuccess(data, variables, context) {
+                        toast.success("Successful");
                         console.log("Success: ", data, variables, context)
                         router.push("/");
                     },
                     onError(error, variables, context) {
+                        toast.error("Error");
                         console.log("Error: ", error, variables, context)
                     },
             });
