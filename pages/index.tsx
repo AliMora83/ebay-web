@@ -47,7 +47,7 @@ const Home = () => {
               onClick={() => router.push(`/listing/${listing.id}`)}
               className='flex flex-col card hover:scale-105 transition-all duration-150 ease-out'>
                 <div className='flex-1 flex flex-col pb-2 items-center'>
-                  <MediaRenderer className='h-44' src={listing.asset.image}/>
+                  <MediaRenderer className='h-44 rounded-lg' src={listing.asset.image}/>
                 </div>
                 <div className='pt-2 space-y-4'>
                   <div>
