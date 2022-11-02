@@ -7,9 +7,6 @@ import Head from 'next/head'
 import nk_logo from 'public/nklogo1.png'
 import Footer from '../components/Footer'
 
-
-
-
 type Props = {}
 
 function addItem({}: Props) {
@@ -27,7 +24,7 @@ function addItem({}: Props) {
         e.preventDefault();
         if (!contract || !address) return;
         if (!image){
-            alert("Please select valid image");
+            alert("Please select valid image"); //add Toast
             return;
         }
         const target = e.target as typeof e.target & {

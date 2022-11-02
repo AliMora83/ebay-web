@@ -11,7 +11,7 @@ import Countdown from 'react-countdown';
 import Footer from '../../components/Footer';
 import network from '../../utils/network';
 import { ethers } from 'ethers';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 
 
@@ -73,7 +73,7 @@ function ListingPage() {
         };
 
         const buyNft = async () => {
-            const notification = toast.loading("Buying NFT...");
+            const notify = toast.loading("Buying NFT...");
             if (networkMismatch) {
                 switchNetwork && switchNetwork(network);
                     return;
@@ -86,21 +86,21 @@ function ListingPage() {
                 type: listing.type,
             }, {
                 onSuccess(data, variables, context) {
-                    toast.success("NFT bought successfully",
-                    {id: notification});
+                    toast.success("NFT bought successfully");
                     console.log("Success: ",data, variables, context);
                     router.replace("/");
                 },
                 onError(error, variables, context) {
-                    toast.error("ERROR: NFT not bought", 
-                    {id: notification});
+                    toast.error("ERROR: NFT not bought");
                     console.log("Error: ", error, variables, context);
                 },
             })
         }
 
+
+
         const createBidOrOffer = async () => {
-            const notification = toast.loading("Creating Bid...");
+            // const notification = toast.loading("Creating Bid...");
                 try {
                     if (networkMismatch) {
                         switchNetwork && switchNetwork(network);
@@ -112,13 +112,11 @@ function ListingPage() {
                             listing.buyoutPrice.toString() === 
                             ethers.utils.parseEther(bidAmount).toString()
                         ) {
-                            toast.success("Buyout price met, buying NFT...",
-                            {id: notification});
+                            toast.success("Buyout price met, buying NFT...");
                             buyNft();
                             return;
                         }
-                            toast.error("Buyout price not met, making offer...", 
-                            {id: notification});
+                            // const id = toast.loading("Please wait...");
                         await makeOffer({
                             quantity: 1,
                             listingId,
@@ -126,20 +124,18 @@ function ListingPage() {
                         }, {
                             onSuccess(data, variables, context) {
                                 console.log("Success: ",data, variables, context)
-                                toast.success("Successfully made Offer",
-                                {id: notification});
+                                toast.success("Successfully made Offer");
                                 setBidAmount("")
                             },
                             onError(error, variables, context) {
                                 console.log("Error: ", error, variables, context)
-                                toast.error("Error: Offer could not be made", 
-                                {id: notification});
+                                toast.error("Error: Offer not accepted");
                             },
                         })
                     }
                 //Auction listing
                     if (listing?.type === ListingType.Auction){
-                        alert("Making Bid...")
+                        const notification = toast.loading("Making Bid...");
 
                         await makeBid(
                             {
@@ -148,14 +144,12 @@ function ListingPage() {
                             },{
                                 onSuccess(data, variables, context) {
                                     console.log("Success: ",data, variables, context)
-                                    toast.success("Successfully made Bid",
-                                    {id: notification});
+                                    toast.success("Successfully made Bid");
                                     setBidAmount("")
                                 },
                                 onError(error, variables, context) {
                                     console.log("Error: ", error, variables, context)
-                                    toast.error("Error: Bid could not be made", 
-                                    {id: notification});
+                                    toast.error("Error: Bid could not be made");
                                 },
                                 
                             }
@@ -192,20 +186,25 @@ function ListingPage() {
         </Head>
       <Header/>
 
-            <main className='max-w-6xl mx-auto p-2 flex flex-col lg:flex-row space-y-10 space-x-5 pr-10'>
-                <div className='p-10 border mx-auto lg:mx-0 max-w-md lg:max-w-xl'>
-                    <MediaRenderer src={listing.asset.image}/>
+            <main className='max-w-6xl mx-auto p-2 flex flex-col lg:flex-row space-y-10 space-x-5 pr-10 pb-20'>
+                <div className='p-10 rounded-lg border mx-auto lg:mx-0 max-w-md lg:max-w-md'>
+                    <MediaRenderer className='rounded-lg' src={listing.asset.image}/>
                 </div>
 
-                <section className='flex-1 space-y-5 pb-20 lg:pb-0'>
+                <section className='flex-1 space-y-5 pb-20 pl-5 lg:pb-0'>
                     <div>
-                        <h1 className='text-xl font-bold'>{listing.asset.name}</h1>
-                        <p className='text-gray-500 text-sm'>{listing.asset.description}</p>
+                        <h1 className='text-xl font-bold'>
+                            {listing.asset.name}</h1>
+                        <p className='text-gray-500 text-sm w-2/3 pt-2'>
+                            {listing.asset.description}</p>
                         <p className='flex items-center text-xs pt-2 sm:text-base text-gray-500 '>
                             <UserCircleIcon className='h-5'/>
                             <span className='font-bold pr-2'>Seller: </span>
-                            {listing.sellerAddress}</p>
+                            {listing.sellerAddress.slice(0, 4) + '...' + 
+                            listing.sellerAddress.slice(-4)}
+                            </p>
                     </div>
+                            <hr className='px-5'/>
 
                     <div className='grid grid-cols-2 items-center py-2'>
                         <p className='font-bold'>Listing Type:</p>

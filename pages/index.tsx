@@ -12,19 +12,22 @@ import Link from 'next/link';
 import Image from 'next/image'
 import Footer from '../components/Footer';
 import { useRouter } from 'next/router';
-import toast from 'react-hot-toast';
-
+import useListItem from "../utils/hooks/useListItem";
 
 
 
 const Home = () => {
+  const { listings, loadingListings } = useListItem();
+
   const router = useRouter();
   const { contract } = useContract(
     process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT, "marketplace"
   );
 
-  const { data: listing, isLoading: loadingListings } =
-  useActiveListings(contract);
+  // const { data: listing, isLoading: loadingListings } =
+  // useActiveListings(contract);
+
+
 
   return (
     <div>
@@ -34,18 +37,18 @@ const Home = () => {
         </Head>
       <Header />
 
-      <main className='max-w-6xl mx-auto py-2 px-6'>
+      <main className='max-w-6xl mx-auto py-2 px-6 pb-10'>
         {loadingListings ? (
         <p className='text-center animate-pulse text-gray-300'>
           Loading listings...</p>
         ) : (
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-auto'>
-            {listing?.map((listing) => (
+            {listings?.map((listing) => (
               <div key={listing.id}
               onClick={() => router.push(`/listing/${listing.id}`)}
               className='flex flex-col card hover:scale-105 transition-all duration-150 ease-out'>
                 <div className='flex-1 flex flex-col pb-2 items-center'>
-                  <MediaRenderer className='h-44' src={listing.asset.image}/>
+                  <MediaRenderer className='h-44 rounded-lg' src={listing.asset.image}/>
                 </div>
                 <div className='pt-2 space-y-4'>
                   <div>
@@ -85,7 +88,7 @@ const Home = () => {
           </div>
        )}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
