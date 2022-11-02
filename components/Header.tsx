@@ -5,11 +5,28 @@ import { ChevronDownIcon, ShoppingCartIcon, BellIcon, MagnifyingGlassIcon } from
 import Image from 'next/image'
 import nk_logo from 'public/nklogo1.png'
 import { toast } from 'react-toastify';
+import useListItem from "../utils/hooks/useListItem";
+
 
 
 type Props = {}
 
 function Header({}: Props) {
+  //Alien
+  
+  const {
+    selectedNft,
+    setSelectedNft,
+    listItemModalRef,
+    openListItem,
+    setPrice,
+    setListingType,
+    handleCreateListing,
+    isDirectListingLoading,
+    isAuctionListingLoading,
+    networkMismatch,
+} = useListItem();
+//Alien
 
   const connectMetamask = useMetamask();
   const disconnect = useDisconnect();
@@ -56,10 +73,10 @@ function Header({}: Props) {
             className="h-full w-full object-contain"/>
 </Link> 
           </div>
-          <button className='hidden lg:flex items-center space-x-2 w-20'>
+          {/* <button className='hidden lg:flex items-center space-x-2 w-20'>
            <p className='text-gray-600 text-sm'>Sort by Category</p> 
             <ChevronDownIcon className='h-4 flex-shrink-0'/>
-          </button>
+          </button> */}
 
           <div className='flex items-center space-x-2 px-2 md:px-5
           py-2 border-black border-2 flex-1'>
@@ -69,10 +86,9 @@ function Header({}: Props) {
                 <button className='hidden sm:inline bg-[#080a0b]/80 text-white px-5 md:px-10 py-2 border-2 border-[#080a0b]'>
                   Search
                 </button>
-          <Link href="listItem">
+         <Link href="/ListItem">
             <button className='border-2 border-[#080a0b] px-5 md:px-10 py-2 text-[#080a0b] hover:bg-[#080a0b]/50 hover:text-white cursor-pointer'>
-              List Item</button>
-            </Link>
+              List Item</button></Link>
         </section>
         <hr className='mt-2'/>
 

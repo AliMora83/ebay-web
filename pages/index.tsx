@@ -17,13 +17,15 @@ import useListItem from "../utils/hooks/useListItem";
 
 
 const Home = () => {
+  const { listings, loadingListings } = useListItem();
+
   const router = useRouter();
   const { contract } = useContract(
     process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT, "marketplace"
   );
 
-  const { data: listing, isLoading: loadingListings } =
-  useActiveListings(contract);
+  // const { data: listing, isLoading: loadingListings } =
+  // useActiveListings(contract);
 
 
 
@@ -41,7 +43,7 @@ const Home = () => {
           Loading listings...</p>
         ) : (
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-auto'>
-            {listing?.map((listing) => (
+            {listings?.map((listing) => (
               <div key={listing.id}
               onClick={() => router.push(`/listing/${listing.id}`)}
               className='flex flex-col card hover:scale-105 transition-all duration-150 ease-out'>
