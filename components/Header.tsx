@@ -28,11 +28,9 @@ function Header({}: Props) {
                 className='connectWalletBtn'> 
                     Connect Wallet</button>
               )}
-              <p className='header_link'>Daily Deals</p>
               <p className='header_link'>Help & Contact</p>
             </div>
             <div className='flex items-center space-x-4 text-sm'>
-              <p className='header_link'>Ship to</p>
               <p className='header_link'>Sell</p>
               <p className='header_link'>Watchlist</p>
 
@@ -71,7 +69,7 @@ function Header({}: Props) {
                 <button className='hidden sm:inline bg-[#080a0b]/80 text-white px-5 md:px-10 py-2 border-2 border-[#080a0b]'>
                   Search
                 </button>
-          <Link href="/create">
+          <Link href="listItem">
             <button className='border-2 border-[#080a0b] px-5 md:px-10 py-2 text-[#080a0b] hover:bg-[#080a0b]/50 hover:text-white cursor-pointer'>
               List Item</button>
             </Link>
