@@ -22,7 +22,7 @@ function Create({}: Props) {
         process.env.NEXT_PUBLIC_COLLECTION_CONTRACT,
         "nft-collection"
         );
-
+      
         const ownedNfts = useOwnedNFTs(collectionContract, address);
 
         const [selectedNft, setSelectedNft] = useState<NFT>();

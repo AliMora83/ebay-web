@@ -4,7 +4,6 @@ import React from 'react'
 import { ChevronDownIcon, ShoppingCartIcon, BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import nk_logo from 'public/nklogo1.png'
-import { toast } from 'react-toastify';
 import useListItem from "../utils/hooks/useListItem";
 
 
@@ -12,21 +11,7 @@ import useListItem from "../utils/hooks/useListItem";
 type Props = {}
 
 function Header({}: Props) {
-  //Alien
-  
-  const {
-    selectedNft,
-    setSelectedNft,
-    listItemModalRef,
-    openListItem,
-    setPrice,
-    setListingType,
-    handleCreateListing,
-    isDirectListingLoading,
-    isAuctionListingLoading,
-    networkMismatch,
-} = useListItem();
-//Alien
+
 
   const connectMetamask = useMetamask();
   const disconnect = useDisconnect();
@@ -86,7 +71,7 @@ function Header({}: Props) {
                 <button className='hidden sm:inline bg-[#080a0b]/80 text-white px-5 md:px-10 py-2 border-2 border-[#080a0b]'>
                   Search
                 </button>
-         <Link href="/ListItem">
+         <Link href="/create">
             <button className='border-2 border-[#080a0b] px-5 md:px-10 py-2 text-[#080a0b] hover:bg-[#080a0b]/50 hover:text-white cursor-pointer'>
               List Item</button></Link>
         </section>

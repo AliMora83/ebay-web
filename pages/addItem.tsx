@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import nk_logo from 'public/nklogo1.png'
 import Footer from '../components/Footer'
+import { toast } from 'react-toastify';
+
 
 type Props = {}
 
@@ -16,7 +18,6 @@ function addItem({}: Props) {
         process.env.NEXT_PUBLIC_COLLECTION_CONTRACT,
         "nft-collection"
     );
-
     const [preview, setPreview] = useState<string>();
     const [image, setImage] = useState<File>();
 
@@ -24,7 +25,7 @@ function addItem({}: Props) {
         e.preventDefault();
         if (!contract || !address) return;
         if (!image){
-            alert("Please select valid image"); //add Toast
+            toast.info("Please select valid image");
             return;
         }
         const target = e.target as typeof e.target & {
